@@ -3,5 +3,5 @@ CREATE TABLE prof(
      sala VARCHAR(100) NOT NULL,
      descrição VARCHAR(100) NOT NULL,
      nome VARCHAR(100) NOT NULL,
-     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+     dath DATETIME
+);
