@@ -33,7 +33,7 @@ if($rows->num_rows > 0){
       <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar contato</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Agendamento</h1>
       </div>
       <div class="modal-body">
       <div class="mb-3 form-floating">
@@ -49,14 +49,14 @@ if($rows->num_rows > 0){
         <label for="exampleFormControlInput3">Nome</label>
       </div>
       <div class="mb-3 form-floating">
-            <input name="data" maxlength="14" type="datetime-local" class="form-control" id="exampleFormControlInput3" placeholder="" value=",<?=$data?>" required>
+            <input name="data" maxlength="14" value="<?=$data?>" type="datetime-local" class="form-control" id="exampleFormControlInput3" placeholder="" value="" required>
             <label for="exampleFormControlInput3">Data</label>
           </div>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">
           <i class="bi bi-person-badge"></i>
-          Salvar contato
+          Salvar Agendamento
         </button>
       </div>
     </div>

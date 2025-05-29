@@ -7,14 +7,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Reserva de Salas</title>
+
+    <link rel="stylesheet" href="estilos.css" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
 <body class="bg-gray-100">
     <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4" class = "pai"> <i class="bi bi-calendar2-heart"> Sistema de Reserva de Salas </i></h1>
+        <h1 class="text-2xl font-bold mb-4 text-center"> 
+          <i class="bi bi-calendar2-heart"> 
+            Sistema de Reserva de Salas 
+          </i>
+        </h1>
 
         <button type="button" class=" m-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <i class="bi bi-plus-circle"></i>  
@@ -35,15 +42,15 @@
         </div>
         <div class="modal-body">
           <div class="mb-3 form-floating">
-            <input name="sala" type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="" required>
+            <input name="sala" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ex: Sala A101" value="" required>
             <label for="exampleFormControlInput1">Sala</label>
           </div>
           <div class="mb-3 form-floating">
-            <input name="descricao" type="text" class="form-control" id="exampleFormControlInput2" placeholder="" value="" required>
+            <input name="descricao" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Ex: Jogar playstation " value="" required>
             <label for="exampleFormControlInput2">Descrição</label>
           </div>
           <div class="mb-3 form-floating">
-            <input name="nome" maxlength="14" type="text" class="form-control" id="exampleFormControlInput3" placeholder="" value="" required>
+            <input name="nome" maxlength="14" type="text" class="form-control" id="exampleFormControlInput3" placeholder="Ex: Fulano de town" value="" required>
             <label for="exampleFormControlInput3">Nome</label>
           </div>
           <div class="mb-3 form-floating">
@@ -62,10 +69,11 @@
 <table class="min-w-full bg-white">
                 <thead>
                   <tr>
-                        <th class="w-1/5 py-2 px-4 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Sala</th>
-                        <th class="w-2/5 py-2 px-4 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Descrição</th>
-                        <th class="w-1/5 py-2 px-4 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Reservado por</th>
-                        <th class="w-1/5 py-2 px-4 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Data e Hora</th>
+                        <th class="w-1/5 py-2 px-4 bg-gray-200 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">Sala</th>
+                        <th class="w-2/5 py-2 px-4 bg-gray-200 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">Descrição</th>
+                        <th class="w-1/5 py-2 px-4 bg-gray-200 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">Reservado por</th>
+                        <th class="w-1/5 py-2 px-4 bg-gray-200 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">Data e Hora</th>
+                        <th class="w-1/5 py-2 px-4 bg-gray-200 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,18 +92,22 @@
               <td>'.$row['descrição'].'</td>
               <td>'.$row['nome'].'</td>
               <td>'.$row['dath'].'</td>
-              <td>
-                <a class="btn btn-danger" href="actions/deletar.php?id='.$row['id'].'">
-                  <i class="bi bi-trash"></i>
-                  Deletar
-                </a>
 
-                <a class="btn btn-primary" href="actions/editar.php?id='.$row['id'].'">
-                  <i class="bi bi-eye"></i>
-                  Editar
-                </a>
+              <td class="text-center">
+                  <a href="actions/deletar.php?id='.$row['id'].'" 
+                    class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-red-100 text-red-600 hover:bg-red-200 transition"
+                    title="Deletar">
+                    <i class="bi bi-trash"></i>
+                  </a>
 
-              </td>
+                      <a href="actions/editar.php?id='.$row['id'].'" 
+                        class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition ml-1"
+                        title="Editar">
+                        <i class="bi bi-eye"></i>
+                      </a>
+</td>
+
+
             </tr>';
         }
       }
@@ -104,19 +116,7 @@
     <tfoot>
     <tr>
       <td colspan="4">
-        <?php
-          $total = $con->query("SELECT COUNT(*) as total FROM prof")->fetch_assoc()['total'];
-
-          $total_paginas = ceil($total / $por_pagina);
-          echo '<nav>
-        <ul class="pagination justify-content-center">';
-
-          for($i = 1; $i <= $total_paginas; $i++){
-            $active = ($i == $pagina) ? 'active' : '';
-          echo '<li class="page-item '.$active.'"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>';
-          }
-          echo '</ul></nav>';
-        ?>
+        
       </td>
     </tr>
   </tfoot>
