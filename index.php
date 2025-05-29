@@ -24,42 +24,44 @@
         <div class="bg-white shadow-md rounded my-6 overflow-x-auto">
     
 
+<form action="./actions/salvar.php" method="post">
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar uma sala</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <div class="mb-3 form-floating">
-        <input name="sala" type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="" required>
-        <label for="exampleFormControlInput1">Sala</label>
-      </div>
-      <div class="mb-3 form-floating">
-        <input name="descricao" type="text" class="form-control" id="exampleFormControlInput2" placeholder="" value="" required>
-        <label for="exampleFormControlInput2">Descrição</label>
-      </div>
-      <div class="mb-3 form-floating">
-        <input name="nome" maxlength="14" type="text" class="form-control" id="exampleFormControlInput3" placeholder="" value="" required>
-        <label for="exampleFormControlInput3">Nome</label>
-      </div>
-      <div class="mb-3 form-floating">
-        <input name="data" maxlength="14" type="datetime-local" class="form-control" id="exampleFormControlInput3" placeholder="" value="" required>
-        <label for="exampleFormControlInput3">Data</label>
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar</button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar uma sala</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3 form-floating">
+            <input name="sala" type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="" required>
+            <label for="exampleFormControlInput1">Sala</label>
+          </div>
+          <div class="mb-3 form-floating">
+            <input name="descricao" type="text" class="form-control" id="exampleFormControlInput2" placeholder="" value="" required>
+            <label for="exampleFormControlInput2">Descrição</label>
+          </div>
+          <div class="mb-3 form-floating">
+            <input name="nome" maxlength="14" type="text" class="form-control" id="exampleFormControlInput3" placeholder="" value="" required>
+            <label for="exampleFormControlInput3">Nome</label>
+          </div>
+          <div class="mb-3 form-floating">
+            <input name="data" maxlength="14" type="datetime-local" class="form-control" id="exampleFormControlInput3" placeholder="" value="" required>
+            <label for="exampleFormControlInput3">Data</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
       </div>
     </div>
   </div>
 </div>
-            <table class="min-w-full bg-white">
+</form>
+<table class="min-w-full bg-white">
                 <thead>
-                    <tr>
+                  <tr>
                         <th class="w-1/5 py-2 px-4 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Sala</th>
                         <th class="w-2/5 py-2 px-4 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Descrição</th>
                         <th class="w-1/5 py-2 px-4 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Reservado por</th>
@@ -67,27 +69,57 @@
                     </tr>
                 </thead>
                 <tbody>
-                
-                    <tr class="border-b">
-                        <td class="py-2 px-4 text-sm text-gray-700">Sala A101</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">Reunião de planejamento</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">João Silva</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">22/05/2024 14:00</td>
-                    </tr>
-                    <tr class="border-b bg-gray-50">
-                        <td class="py-2 px-4 text-sm text-gray-700">Sala B202</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">Workshop de Marketing</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">Maria Oliveira</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">21/05/2024 09:00</td>
-                    </tr>
-                    <tr class="border-b">
-                        <td class="py-2 px-4 text-sm text-gray-700">Sala C303</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">Treinamento de TI</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">Carlos Souza</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">20/05/2024 16:00</td>
-                    </tr>
-                    
-                </tbody>
+                <?php
+      $por_pagina = 10;
+      $pagina = $_GET['pagina'] ?? 1;
+      $inicio = ($pagina - 1) * $por_pagina;
+
+      $sql = "SELECT * FROM prof ORDER BY id DESC LIMIT $inicio, $por_pagina"; 
+      $rows = $con->query($sql);
+      if($rows->num_rows > 0){
+        while($row = $rows->fetch_assoc()){
+          echo '
+            <tr class="text-center">
+              <th scope="row">'.$row['sala'].'</th>
+              <td>'.$row['descrição'].'</td>
+              <td>'.$row['nome'].'</td>
+              <td>'.$row['dath'].'</td>
+              <td>
+                <a class="btn btn-danger" href="actions/deletar.php?id='.$row['id'].'">
+                  <i class="bi bi-trash"></i>
+                  Deletar
+                </a>
+
+                <a class="btn btn-primary" href="actions/editar.php?id='.$row['id'].'">
+                  <i class="bi bi-eye"></i>
+                  Editar
+                </a>
+
+              </td>
+            </tr>';
+        }
+      }
+    ?>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="4">
+        <?php
+          $total = $con->query("SELECT COUNT(*) as total FROM prof")->fetch_assoc()['total'];
+
+          $total_paginas = ceil($total / $por_pagina);
+          echo '<nav>
+        <ul class="pagination justify-content-center">';
+
+          for($i = 1; $i <= $total_paginas; $i++){
+            $active = ($i == $pagina) ? 'active' : '';
+          echo '<li class="page-item '.$active.'"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>';
+          }
+          echo '</ul></nav>';
+        ?>
+      </td>
+    </tr>
+  </tfoot>
             </table>
         </div>
     </div>
