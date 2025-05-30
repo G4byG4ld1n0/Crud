@@ -55,7 +55,7 @@ if($rows->num_rows > 0){
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">
-          <i class="bi bi-person-badge"></i>
+        <i class="bi bi-calendar2-check"></i>
           Salvar Agendamento
         </button>
       </div>

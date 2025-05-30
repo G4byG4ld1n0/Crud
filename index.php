@@ -41,21 +41,22 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-3 form-floating">
-            <input name="sala" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ex: Sala A101" value="" required>
+          <div class="mb-3 ">
             <label for="exampleFormControlInput1">Sala</label>
+            <input name="sala" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ex: Sala A101" value="" required>
           </div>
-          <div class="mb-3 form-floating">
+          <div class="mb-3">
+          <label for="exampleFormControlInput2">Descrição</label>
             <input name="descricao" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Ex: Jogar playstation " value="" required>
-            <label for="exampleFormControlInput2">Descrição</label>
           </div>
-          <div class="mb-3 form-floating">
+          <div class="mb-3">
+          <label for="exampleFormControlInput3">Nome</label>
             <input name="nome" maxlength="14" type="text" class="form-control" id="exampleFormControlInput3" placeholder="Ex: Fulano de town" value="" required>
-            <label for="exampleFormControlInput3">Nome</label>
           </div>
-          <div class="mb-3 form-floating">
+          <div class="mb-3">
+          <label for="exampleFormControlInput3">Data</label>
             <input name="data" maxlength="14" type="datetime-local" class="form-control" id="exampleFormControlInput3" placeholder="" value="" required>
-            <label for="exampleFormControlInput3">Data</label>
+            
           </div>
         </div>
         <div class="modal-footer">
