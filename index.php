@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Reserva de Salas</title>
-    
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -87,28 +86,25 @@
       if($rows->num_rows > 0){
         while($row = $rows->fetch_assoc()){
           echo '
-            <tr class="text-center">
-              <th scope="row">'.$row['sala'].'</th>
-              <td>'.$row['descrição'].'</td>
-              <td>'.$row['nome'].'</td>
-              <td>'.$row['dath'].'</td>
-
-              <td class="text-center">
-                  <a href="actions/deletar.php?id='.$row['id'].'" 
-                    class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-red-100 text-red-600 hover:bg-red-200 transition"
-                    title="Deletar">
-                    <i class="bi bi-trash"></i>
-                  </a>
-
-                      <a href="actions/editar.php?id='.$row['id'].'" 
-                        class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition ml-1"
-                        title="Editar">
-                        <i class="bi bi-eye"></i>
-                      </a>
-</td>
-
-
-            </tr>';
+       
+        <tr class="text-center border-b border-gray-200">
+          <th scope="row">'.$row['sala'].'</th>
+          <td>'.$row['descrição'].'</td>
+          <td>'.$row['nome'].'</td>
+          <td>'.$row['dath'].'</td>
+          <td class="text-center">
+              <a href="actions/deletar.php?id='.$row['id'].'" 
+                class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-red-100 text-red-600 hover:bg-red-200 transition"
+                title="Deletar">
+                <i class="bi bi-trash"></i>
+              </a>
+              <a href="actions/editar.php?id='.$row['id'].'" 
+                class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition ml-1"
+                title="Editar">
+                <i class="bi bi-eye"></i>
+              </a>
+          </td>
+        </tr>';
         }
       }
     ?>
