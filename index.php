@@ -25,7 +25,7 @@
 
         <button type="button" class=" m-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <i class="bi bi-plus-circle"></i>  
-            Adicionar uma sala
+            Fazer um agendamento
         </button>
 
         <div class="bg-white shadow-md rounded my-6 overflow-x-auto">
@@ -37,7 +37,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar uma sala</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Fazer um agendamento</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
